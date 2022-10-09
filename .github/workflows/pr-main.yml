@@ -1,7 +1,7 @@
 name: Pull request validation (main)
 
 on:
-  push:
+  pull-request:
     branches:
       - main
 
@@ -25,8 +25,8 @@ jobs:
         id: failed-screenshots
         run: "./.github/workflows/scripts/process_failed_screenshots.sh"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          GITHUB_REPOSITORY: ${{ secrets.REPOSITORY }}
           PR_BRANCH: ${{ github.head_ref }}
       - name: Comment PR if screenshot tests failed
         uses: octokit/request-action@v2.0.0
